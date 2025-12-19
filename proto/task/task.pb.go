@@ -24,8 +24,9 @@ const (
 // Сущность задача
 type Task struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	Userid        int64                  `protobuf:"varint,3,opt,name=userid,proto3" json:"userid,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -60,7 +61,7 @@ func (*Task) Descriptor() ([]byte, []int) {
 	return file_proto_task_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Task) GetId() uint32 {
+func (x *Task) GetId() int64 {
 	if x != nil {
 		return x.Id
 	}
@@ -72,6 +73,13 @@ func (x *Task) GetTitle() string {
 		return x.Title
 	}
 	return ""
+}
+
+func (x *Task) GetUserid() int64 {
+	if x != nil {
+		return x.Userid
+	}
+	return 0
 }
 
 // Запрос на создание
@@ -515,10 +523,11 @@ var File_proto_task_proto protoreflect.FileDescriptor
 
 const file_proto_task_proto_rawDesc = "" +
 	"\n" +
-	"\x10proto/task.proto\x12\x04task\",\n" +
+	"\x10proto/task.proto\x12\x04task\"D\n" +
 	"\x04Task\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\")\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x16\n" +
+	"\x06userid\x18\x03 \x01(\x03R\x06userid\")\n" +
 	"\x11CreateTaskRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\"4\n" +
 	"\x12CreateTaskResponse\x12\x1e\n" +
@@ -550,7 +559,7 @@ const file_proto_task_proto_rawDesc = "" +
 	"\n" +
 	"UpdateTask\x12\x17.task.UpdateTaskRequest\x1a\x18.task.UpdateTaskResponse\x12?\n" +
 	"\n" +
-	"DeleteTask\x12\x17.task.DeleteTaskRequest\x1a\x18.task.DeleteTaskResponseB/Z-github.com/your-org/project-protos/proto/taskb\x06proto3"
+	"DeleteTask\x12\x17.task.DeleteTaskRequest\x1a\x18.task.DeleteTaskResponseB-Z+github.com/stokth/project-protos/proto/taskb\x06proto3"
 
 var (
 	file_proto_task_proto_rawDescOnce sync.Once

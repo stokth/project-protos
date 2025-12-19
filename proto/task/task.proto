@@ -4,8 +4,9 @@ option go_package = "github.com/stokth/project-protos/proto/task";
 
 // Сущность задача
 message Task {
-  uint32 id      = 1;
+  int64 id      = 1;
   string title   = 2;
+  int64 userid = 3;
 }
 
 // Запрос на создание
